@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom_clone/json/root_app.dart';
 import 'package:zoom_clone/json/root_app.dart';
+import 'package:zoom_clone/pages/participants_page.dart';
 import 'package:zoom_clone/themes/colors.dart';
 
 class RootApp extends StatefulWidget {
@@ -10,6 +12,7 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
+  int pageIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,19 +100,26 @@ class _RootAppState extends State<RootApp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(bottomItems.length, (index) {
-              return Column(
-                children: [
-                  Icon(bottomItems[index],
-                      color: colorItems[index], size: sizedItems[index]),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    textItems[index],
-                    style: TextStyle(
-                        fontSize: 10, color: grey, fontWeight: FontWeight.w600),
-                  )
-                ],
+              return GestureDetector(
+                onTap: () {
+                  selectedTab(index);
+                },
+                child: Column(
+                  children: [
+                    Icon(bottomItems[index],
+                        color: colorItems[index], size: sizedItems[index]),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      textItems[index],
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: grey,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
               );
             })),
       ),
@@ -127,13 +137,52 @@ class _RootAppState extends State<RootApp> {
           Container(
             width: 120,
             height: 170,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                    image: NetworkImage(profileOtherUrl), fit: BoxFit.cover)),
           )
         ],
       ),
     );
+  }
+
+  selectedTab(index) {
+    setState(() {
+      pageIndex = index;
+    });
+    if (pageIndex == 3) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              fullscreenDialog: true, builder: (_) => ParticipantPage()));
+    } else if (pageIndex == 4) {
+      getBottomSheet();
+    }
+  }
+
+  getBottomSheet() {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) => CupertinoActionSheet(
+            cancelButton: CupertinoActionSheetAction(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+            actions: List.generate(actionSheetItems.length, (index) {
+              if (actionSheetItems[index] == "Disconnect Audio") {
+                return CupertinoActionSheetAction(
+                    child: Text(
+                      actionSheetItems[index],
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    });
+              }
+
+              return CupertinoActionSheetAction(
+                  child: Text(actionSheetItems[index]),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  });
+            })));
   }
 }

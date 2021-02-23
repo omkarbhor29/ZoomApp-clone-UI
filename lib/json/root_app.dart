@@ -17,6 +17,7 @@ List colorItems = [
   grey,
   grey,
 ];
+
 List sizedItems = [
   30.0,
   30.0,
@@ -32,5 +33,5 @@ List actionSheetItems = [
   "Minimize Meeting",
   "Virtual Background",
   "Disconnect Audio",
-  "👏   👍   💔   🤣   😮   🎉"
+  "👏  👍  💔  🤣  😮  🎉"
 ];
