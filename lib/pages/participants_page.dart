@@ -20,7 +20,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
   }
 
   Widget getAppBar() {
-    var ParticipantsCount = participants.length;
+    var participantsCount = participants.length;
 
     return AppBar(
       elevation: 0,
@@ -37,7 +37,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
           ),
         ),
       ),
-      title: Center(child: Text("Participants ($ParticipantsCount)")),
+      title: Center(child: Text("Participants ($participantsCount)")),
     );
   }
 

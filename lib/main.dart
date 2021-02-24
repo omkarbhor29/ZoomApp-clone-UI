@@ -6,6 +6,6 @@ void main() {
   runApp(MaterialApp(
     theme: ThemeData(brightness: Brightness.dark),
     debugShowCheckedModeBanner: false,
-    home: HomePage(),
+    home: RootApp(),
   ));
 }

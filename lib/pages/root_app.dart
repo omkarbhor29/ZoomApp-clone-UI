@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom_clone/json/root_app.dart';
-import 'package:zoom_clone/json/root_app.dart';
 import 'package:zoom_clone/pages/home_page.dart';
 import 'package:zoom_clone/pages/participants_page.dart';
 import 'package:zoom_clone/themes/colors.dart';

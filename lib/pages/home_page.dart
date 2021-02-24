@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/json/home_json.dart';
 import 'package:zoom_clone/themes/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int activeTab = 0;
+  CarouselController buttonCarouseController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +101,16 @@ class _HomePageState extends State<HomePage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-    var options = CarouselOptions(viewportFraction: 0.99, height: size.height);
+    var options = CarouselOptions(
+      viewportFraction: 0.99,
+      height: size.height,
+      onPageChanged: (index, reason) {
+        setState(() {
+          activeTab = index;
+        });
+      },
+    );
+
     List<Color> colors = [
       red,
       primary,
@@ -107,11 +119,44 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return CarouselSlider(
-        items: List.generate(4, (index) {
+        carouselController: buttonCarouseController,
+        items: List.generate(items.length, (index) {
           return Container(
             width: size.width,
             height: size.height,
-            decoration: BoxDecoration(color: colors[index]),
+            // decoration: BoxDecoration(color: colors[index]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      items[index]['title'],
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      items[index]['description'],
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 260,
+                  height: 260,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(items[index]['img']),
+                          fit: BoxFit.cover)),
+                )
+              ],
+            ),
           );
         }),
         options: options);
