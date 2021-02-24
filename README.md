@@ -1,7 +1,8 @@
 # zoom_clone
 
-![Screenshot from 2021-02-24 15-55-39](https://user-images.githubusercontent.com/45947877/108991944-b8ba1a00-76be-11eb-8e59-700155f72d86.png) ![Screenshot from 2021-02-24 15-56-08](https://user-images.githubusercontent.com/45947877/108991980-c1125500-76be-11eb-91d7-b8cf193d6a32.png)
+![Screenshot from 2021-02-24 15-55-39](https://user-images.githubusercontent.com/45947877/108991944-b8ba1a00-76be-11eb-8e59-700155f72d86.png) 
 
+![Screenshot from 2021-02-24 15-56-08](https://user-images.githubusercontent.com/45947877/108991980-c1125500-76be-11eb-91d7-b8cf193d6a32.png)
 
 ![Screenshot from 2021-02-24 15-56-11](https://user-images.githubusercontent.com/45947877/108991999-c66f9f80-76be-11eb-92f7-8813c834f6af.png)
 
