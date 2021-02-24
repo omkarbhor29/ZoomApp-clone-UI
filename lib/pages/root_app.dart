@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom_clone/json/root_app.dart';
 import 'package:zoom_clone/json/root_app.dart';
+import 'package:zoom_clone/pages/home_page.dart';
 import 'package:zoom_clone/pages/participants_page.dart';
 import 'package:zoom_clone/themes/colors.dart';
 
@@ -67,16 +68,24 @@ class _RootAppState extends State<RootApp> {
               )
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: red, borderRadius: BorderRadius.circular(8)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 12, right: 12, top: 5, bottom: 5),
-              child: Text(
-                "Leave",
-                style: TextStyle(
-                    fontSize: 15, color: grey, fontWeight: FontWeight.w600),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => HomePage()),
+                  (route) => false);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: red, borderRadius: BorderRadius.circular(8)),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 12, right: 12, top: 5, bottom: 5),
+                child: Text(
+                  "Leave",
+                  style: TextStyle(
+                      fontSize: 15, color: grey, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           )
