@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_clone/json/home_json.dart';
+import 'package:zoom_clone/pages/join_meeting_page.dart';
 import 'package:zoom_clone/themes/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,15 +67,24 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              width: size.width * 0.75,
-              height: 50,
-              decoration: BoxDecoration(
-                  color: primary, borderRadius: BorderRadius.circular(15)),
-              child: Center(
-                child: Text(
-                  "Join a Meeting",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (_) => JoinMeetingPage()));
+              },
+              child: Container(
+                width: size.width * 0.75,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: primary, borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                  child: Text(
+                    "Join a Meeting",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                  ),
                 ),
               ),
             ),
